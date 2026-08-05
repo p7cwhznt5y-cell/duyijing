@@ -1,0 +1,22 @@
+# wrangler.toml —— 备用部署方案：将 /api/interpret 作为独立 Cloudflare Worker 部署
+# 主方案走 Vercel（见 vercel.json），本文件用于想单独托管 Worker 的情形
+# 部署步骤：
+#   1. 安装 wrangler：npm install -g wrangler
+#   2. 登录：wrangler login
+#   3. 设 API Key 环境变量：wrangler secret put DEEPSEEK_API_KEY
+#   4. 部署：wrangler deploy
+#
+# 同时需要调整前端 interpret.ts 的 fetch 目标为 Worker 域名（或在 Vercel + Workers 混合时配置域名路由）
+
+name = "guanbian-interpret-worker"
+main = "./api/interpret.js"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# 非敏感公共变量；API Key 用 `wrangler secret put DEEPSEEK_API_KEY` 设置，不要写在此处
+
+[env.production]
+name = "guanbian-interpret-worker"
+zone_id = ""   # 自定义域名时填写
+route = ""     # 自定义域名路由时填写，如 "api.guanbian.example.com/*"
