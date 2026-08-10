@@ -29,3 +29,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.trae-html-share-packages/
+*.zip
+node_modules/
+dist/
