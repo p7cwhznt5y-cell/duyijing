@@ -41,37 +41,38 @@ export function Home(_props: RoutableProps) {
   }, []);
 
   const handleInspire = async () => {
-    if (loading || !hexagram) return;
-    const truncated = truncateInput(question.trim());
-    const detection = detectSensitive(truncated);
-    if (detection.sensitive && detection.careMessage) {
-      setCareMessage(detection.careMessage);
-      return;
-    }
-    setCareMessage(null);
-    setLoading(true);
-    setError("");
-    try {
-      const result = await interpretHexagram(hexagram, truncated);
-      if (result.error) {
-        setError(result.error);
-        setInterpretation("");
-      } else {
-        setInterpretation(result.interpretation);
-        saveTodayReading({
-          date: getTodayString(),
-          hexagramIndex: hexagram.index,
-          question: truncated,
-          interpretation: result.interpretation,
-        });
-      }
-    } catch {
-      setError("今日卦象已为你抽取，但 AI 解读暂时不可用，请稍后再试。");
+  if (loading || !hexagram) return;
+  const truncated = truncateInput(question.trim());
+  const detection = detectSensitive(truncated);
+  if (detection.sensitive && detection.careMessage) {
+    setCareMessage(detection.careMessage);
+    return;
+  }
+  setCareMessage(null);
+  setLoading(true);
+  setError("");
+  try {
+    const result = await interpretHexagram(hexagram, truncated);
+    if (result.error) {
+      setError(result.error);
       setInterpretation("");
-    } finally {
-      setLoading(false);
+    } else {
+      setInterpretation(result.interpretation);
+      saveTodayReading({
+        date: getTodayString(),
+        hexagramIndex: hexagram.index,
+        question: truncated,
+        interpretation: result.interpretation,
+      });
     }
-  };
+  } catch (e: any) {
+    console.error("💥 handleInspire 异常:", e);
+    setError(e?.message || "今日卦象已为你抽取，但 AI 解读暂时不可用，请稍后再试。");
+    setInterpretation("");
+  } finally {
+    setLoading(false);
+  }
+};
 
   if (!hexagram) {
     return (

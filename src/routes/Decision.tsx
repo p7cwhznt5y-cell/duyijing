@@ -157,7 +157,7 @@ export function Decision(_props: RoutableProps) {
       .then((result) => {
         if (cancelled) return;
         if (result.error || !result.interpretation) {
-          setError("AI 解读暂时不可用，请稍后再试");
+          setError(result.error || "AI 解读暂时不可用，请稍后再试");
           setAiInterpretation("");
         } else {
           setAiInterpretation(result.interpretation);
