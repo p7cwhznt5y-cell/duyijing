@@ -23,7 +23,6 @@ export function Hexagrams(_props: RoutableProps) {
           卦象详情
         </h1>
         <p class="mt-3 font-sans text-xs text-ink/50 leading-relaxed">
-          首版收录 8 卦（乾、坤、屯、蒙、需、讼、师、比），余 56 卦迭代补全
         </p>
       </header>
 
