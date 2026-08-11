@@ -35,7 +35,7 @@ export async function onRequestPost(context) {
         'Authorization': `Bearer ${env.DEEPSEEK_API_KEY}`
       },
       body: JSON.stringify({
-        model: 'deepseek-v4-flash',
+        model: 'deepseek-chat',
         messages: [{ role: 'user', content: prompt }],
         temperature: 0.7,
         max_tokens: 600
