@@ -1,0 +1,35 @@
+/* src/routes/Home.css */
+.inspiration-card {
+  background-color: #fdfbf7;
+  border: 1px solid #e0d6c8;
+  border-radius: 12px;
+  padding: 28px 24px;
+  margin: 24px 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.inspiration-card h2 {
+  font-family: serif;
+  font-size: 20px;
+  font-weight: bold;
+  color: #c0392b;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.inspiration-text {
+  font-size: 15px;
+  line-height: 1.9;
+  color: #333;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.inspiration-footer {
+  font-size: 12px;
+  color: #999;
+  text-align: center;
+  margin-top: 20px;
+  border-top: 1px dashed #e0d6c8;
+  padding-top: 16px;
+}

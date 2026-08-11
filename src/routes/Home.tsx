@@ -1,4 +1,5 @@
 import { useEffect, useState } from "preact/hooks";
+import "./Home.css";
 import type { RoutableProps } from "preact-router";
 import type { Hexagram } from "../data/types.ts";
 import {
@@ -109,12 +110,13 @@ export function Home(_props: RoutableProps) {
       </section>
 
       {interpretation ? (
-        <section class="my-6 bg-white/60 rounded-lg px-4 py-4">
-          <h2 class="font-serif text-lg font-bold text-cinnabar mb-2">今日启发</h2>
-          <p class="font-sans text-sm leading-relaxed text-ink whitespace-pre-wrap">
-            {interpretation}
-          </p>
-        </section>
+        <div className="inspiration-card">
+       <h2>今日启发</h2>
+       <div className="inspiration-text">{interpretation}</div>
+       <p className="inspiration-footer">
+       以上内容仅为基于易经哲学的启发式思考，不构成任何实际建议。
+       </p>
+       </div>
       ) : null}
 
       {loading ? (

@@ -194,3 +194,25 @@
     border-right-color: var(--border);
   }
 }
+
+css
+/* 针对今日启发区域的整体容器 */
+.inspiration-card {
+background-color: #fdfbf7; /* 稍微暖一点的米白背景，护眼 */
+border: 1px solid #e0d6c8;
+border-radius: 12px;
+padding: 24px;
+margin-bottom: 24px;
+box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+/* 针对那段文字本身 */
+.inspiration-text {
+font-size: 15px;
+line-height: 1.8; /* 关键：增加行高，让文字“站立”起来 */
+color: #333;
+/* 关键：设置最大宽度和居中，防止文字在大屏幕上拉得太长 */
+max-width: 600px;
+margin: 0 auto;
+/* 增加段间距（如果是通过 \n 换行的） */
+white-space: pre-wrap;
+}
