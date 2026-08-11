@@ -23,7 +23,7 @@ interface Step {
   yaoIndex?: number;
 }
 
-const DILEMMA_MIN = 0;
+const DILEMMA_MIN = 1;
 const DILEMMA_MAX = 500;
 
 function yaoTitle(position: number, isYang: boolean): string {
