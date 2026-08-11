@@ -23,7 +23,7 @@ interface Step {
   yaoIndex?: number;
 }
 
-const DILEMMA_MIN = 10;
+const DILEMMA_MIN = 0;
 const DILEMMA_MAX = 500;
 
 function yaoTitle(position: number, isYang: boolean): string {
@@ -184,16 +184,16 @@ export function Decision(_props: RoutableProps) {
 
   const yaoForCurrentStep =
     currentStep.type === "yao" &&
-    currentStep.yaoIndex !== undefined &&
-    selectedHexagram
+      currentStep.yaoIndex !== undefined &&
+      selectedHexagram
       ? (() => {
-          const idx = currentStep.yaoIndex!;
-          const position = idx + 1;
-          const isYang = selectedHexagram.binary[idx] === "1";
-          const title = yaoTitle(position, isYang);
-          const text = selectedHexagram.yaoCi[idx] ?? "";
-          return { position, isYang, title, text };
-        })()
+        const idx = currentStep.yaoIndex!;
+        const position = idx + 1;
+        const isYang = selectedHexagram.binary[idx] === "1";
+        const title = yaoTitle(position, isYang);
+        const text = selectedHexagram.yaoCi[idx] ?? "";
+        return { position, isYang, title, text };
+      })()
       : undefined;
 
   const selectedCategoryLabel = category
@@ -262,11 +262,10 @@ export function Decision(_props: RoutableProps) {
                   key={h.index}
                   type="button"
                   onClick={() => handleSelectHexagram(h)}
-                  class={`w-full text-left rounded-lg px-4 py-3 border transition-colors ${
-                    isActive
+                  class={`w-full text-left rounded-lg px-4 py-3 border transition-colors ${isActive
                       ? "border-cinnabar bg-cinnabar/10"
                       : "border-ink/15 bg-white/60 hover:border-cinnabar/50"
-                  }`}
+                    }`}
                 >
                   <div class="flex items-center gap-3">
                     <span class="font-serif text-3xl text-ink leading-none">
@@ -274,9 +273,8 @@ export function Decision(_props: RoutableProps) {
                     </span>
                     <div class="min-w-0">
                       <div
-                        class={`font-serif font-bold text-base ${
-                          isActive ? "text-cinnabar" : "text-ink"
-                        }`}
+                        class={`font-serif font-bold text-base ${isActive ? "text-cinnabar" : "text-ink"
+                          }`}
                       >
                         {h.name}
                       </div>

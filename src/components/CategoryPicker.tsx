@@ -32,7 +32,7 @@ export function CategoryPicker({
                 isActive ? "text-cinnabar" : "text-ink"
               }`}
             >
-              {cat.value} {cat.label}
+              {cat.value} 
             </div>
             <div class="mt-1 font-sans text-xs leading-relaxed text-ink/60">
               {cat.description}
