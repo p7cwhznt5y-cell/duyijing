@@ -18,6 +18,10 @@ export async function onRequestPost(context) {
   
   console.log('✅ API Key 存在，长度:', apiKey.length);
   
+  // 从环境变量读取模型名称，若未设置则回退到 Qwen/Qwen3-8B
+  const model = env.DEEPSEEK_V4_FLASH || 'Qwen/Qwen3-8B';
+  console.log('🤖 使用模型:', model);
+  
   try {
     const body = await request.json();
     const { hexagramName, guaCi, selectedYao, userQuestion } = body;
@@ -29,7 +33,7 @@ export async function onRequestPost(context) {
     
     const prompt = `你是一位深谙《周易》哲学的学者。基于${hexagramName}卦的卦辞"${guaCi}"和爻辞${yaoStr}，针对用户问题"${userQuestion || '无'}"，给出200-300字的哲学启发式解读。严禁吉凶断言，末尾必须附："以上内容仅为基于易经哲学的启发式思考，不构成任何实际建议。"`;
     
-    console.log('🚀 调用硅基流动 API（流式），模型: Qwen/Qwen3-8B');
+    console.log('🚀 调用硅基流动 API（流式），模型:', model);
     
     const response = await fetch('https://api.siliconflow.cn/v1/chat/completions', {
       method: 'POST',
@@ -38,14 +42,14 @@ export async function onRequestPost(context) {
         'Authorization': `Bearer ${apiKey}`
       },
       body: JSON.stringify({
-        model: 'Qwen/Qwen3-8B',
+        model: model,
         messages: [
           { role: 'system', content: '你是一位深谙《周易》哲学的学者。' },
           { role: 'user', content: prompt }
         ],
         temperature: 0.7,
-        max_tokens: 400,  // 降低输出长度，减少生成时间
-        stream: true       // 关键：启用流式输出，避免 504 超时
+        max_tokens: 400,
+        stream: true
       })
     });
     
@@ -89,7 +93,7 @@ export async function onRequestPost(context) {
           const delta = json.choices?.[0]?.delta?.content || '';
           interpretation += delta;
         } catch (e) {
-          // 忽略解析错误，继续处理下一行
+          // 忽略解析错误
         }
       }
     }
@@ -117,6 +121,3 @@ export async function onRequestPost(context) {
     });
   }
 }
-
-const model = env.MODEL_NAME || 'Qwen/Qwen3-8B';
-// 然后在请求体中使用 model 变量
