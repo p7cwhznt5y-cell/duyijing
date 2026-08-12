@@ -68,10 +68,10 @@ export function Home(_props: RoutableProps) {
     }
   } catch (e: any) {
     console.error("💥 handleInspire 异常:", e);
-    setError(e?.message || "今日卦象已为你抽取，但 AI 解读暂时不可用，请稍后再试。");
+    setError(
+      "解读生成失败。如持续出现，请尝试：刷新页面、关闭广告拦截插件，或换用 Chrome/Edge 浏览器。如果仍无法解决，请关注微信公众号【绾绾wanny】，留言告知问题，我会尽快协助您。"
+    );
     setInterpretation("");
-  } finally {
-    setLoading(false);
   }
 };
 
