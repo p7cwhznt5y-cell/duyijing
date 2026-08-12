@@ -117,3 +117,6 @@ export async function onRequestPost(context) {
     });
   }
 }
+
+const model = env.MODEL_NAME || 'Qwen/Qwen3-8B';
+// 然后在请求体中使用 model 变量

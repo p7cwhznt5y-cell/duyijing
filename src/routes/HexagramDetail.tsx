@@ -14,10 +14,6 @@ export function HexagramDetail({ index }: HexagramDetailProps) {
     ? getHexagramByIndex(numericIndex)
     : undefined;
 
-  const categoryLabel = hexagram
-    ? HEXAGRAM_CATEGORIES.find((c) => c.value === hexagram.category)?.label ?? ""
-    : "";
-
   if (!hexagram) {
     return (
       <main class="max-w-md md:max-w-2xl mx-auto px-4 py-12 font-sans text-center bg-paper">
@@ -46,7 +42,7 @@ export function HexagramDetail({ index }: HexagramDetailProps) {
           <span class="font-bold">{hexagram.name}</span>
         </h1>
         <span class="inline-block mt-4 rounded-full border border-cinnabar/60 text-cinnabar px-3 py-0.5 font-sans text-xs">
-          {hexagram.category} {categoryLabel}
+          {hexagram.category} 
         </span>
       </header>
 
