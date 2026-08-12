@@ -24,6 +24,7 @@ export function Home(_props: RoutableProps) {
   const [interpretation, setInterpretation] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [showContact, setShowContact] = useState(false);
 
   useEffect(() => {
     const reading = getTodayReading();
@@ -157,6 +158,42 @@ export function Home(_props: RoutableProps) {
       </section>
 
       <Disclaimer />
+      {/* 联系我按钮 */}
+      <button
+        onClick={() => setShowContact(true)}
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-cinnabar text-white rounded-full shadow-lg hover:shadow-xl transition-shadow flex items-center justify-center text-2xl"
+        title="联系我"
+      >
+        💬
+      </button>
+
+      {/* 二维码弹窗 */}
+      {showContact && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/50 flex items-center justify-center"
+          onClick={() => setShowContact(false)}
+        >
+          <div
+            className="bg-white rounded-2xl p-6 max-w-xs mx-4 relative shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setShowContact(false)}
+              className="absolute -top-3 -right-3 w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-300 transition-colors"
+            >
+              ✕
+            </button>
+            <img
+              src="/qrcode.jpg"
+              alt="公众号二维码"
+              className="w-full rounded-lg"
+            />
+            <p className="text-center text-sm text-gray-600 mt-4">
+              扫码关注公众号，获取更多帮助
+            </p>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

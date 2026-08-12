@@ -34,3 +34,13 @@
   border-top: 1px dashed #e0d6c8;
   padding-top: 16px;
 }
+
+/* 联系按钮动画 */
+.fixed.bottom-6.right-6 {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
