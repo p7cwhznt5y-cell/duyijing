@@ -112,7 +112,8 @@ export function Home(_props: RoutableProps) {
       {interpretation ? (
         <div className="inspiration-card">
        <h2>今日启发</h2>
-       <div className="inspiration-text">{interpretation}</div>
+      <div className="inspiration-text">{interpretation.replace(/。/g, '。\n')}</div>
+       <br />  {/* 加一个空行 */}
        <p className="inspiration-footer">
        以上内容仅为基于易经哲学的启发式思考，不构成任何实际建议。
        </p>

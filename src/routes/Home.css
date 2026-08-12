@@ -19,10 +19,11 @@
 
 .inspiration-text {
   font-size: 15px;
-  line-height: 1.9;
+  line-height: 1.7;
   color: #333;
-  white-space: pre-wrap;
-  word-break: break-word;
+  word-break: break-word; /* 核心改动：强制长句换行 */
+  padding: 0 10px; /* 增加一点左右内边距，防止文字贴边 */
+
 }
 
 .inspiration-footer {
