@@ -60,7 +60,7 @@
 - [x] 分步骤展示对应爻辞原文（YaoStep.tsx 组件存在，steps 中循环 6 步 yao）
 - [x] 每步引导用户在"刚/柔"或"进/退"间做选择（YaoStep 阳爻选项"刚健进取/持守谦柔"，阴爻"柔顺承应/坚守本位"，刚/柔维度）
 - [x] 每步选择后调用 AI 解读该爻（首版在报告步统一调用一次）—— Decision.tsx:130 interpretHexagram 在 report step 调用
-- [x] 最终生成"决策复盘报告"（DecisionReport.tsx 组件存在，33 行以上非占位，含两难/卦象/爻位抉择/整体启发四部分）
+- [x] 最终生成"推演报告"（DecisionReport.tsx 组件存在，33 行以上非占位，含两难/卦象/爻位抉择/整体启发四部分）
 
 ## 卦象详情页
 - [x] 已录入卦的网格视图入口（Hexagrams.tsx grid grid-cols-2 md:grid-cols-4，遍历 HEXAGRAMS 8 条）

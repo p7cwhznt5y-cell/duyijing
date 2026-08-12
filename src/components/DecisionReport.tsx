@@ -35,7 +35,7 @@ export function DecisionReport({
   return (
     <div class="space-y-6">
       <header class="text-center">
-        <h2 class="font-serif text-2xl font-bold text-cinnabar">决策复盘报告</h2>
+        <h2 class="font-serif text-2xl font-bold text-cinnabar">推演报告</h2>
         <p class="mt-1 font-sans text-xs text-ink/50">观变 · 易经互动推演</p>
       </header>
 
