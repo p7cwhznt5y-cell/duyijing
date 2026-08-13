@@ -12,7 +12,7 @@ export async function onRequestPost(context) {
     console.error('❌ 未配置任何 API Key');
     return new Response(JSON.stringify({ 
       error: 'AI_SERVICE_NOT_CONFIGURED',
-      message: 'AI 服务尚未配置：缺少 API Key'
+      message: 'AI 解读服务尚未就绪，请联系管理员配置。'
     }), { 
       status: 503,
       headers: { 'Content-Type': 'application/json' }
@@ -121,12 +121,12 @@ export async function onRequestPost(context) {
       console.error('❌ 所有模型均失败');
       return new Response(JSON.stringify({ 
         interpretation: '',
-        error: 'ALL_MODELS_FAILED',
-        message: `所有 AI 模型均无法提供服务。最后错误: ${lastError || '未知'}`
-      }), { 
+        error: 'AI_SERVICE_UNAVAILABLE',
+        message: 'AI 解读服务暂时繁忙，请稍后再试。如持续无法使用，请关注微信公众号【绾绾wanny】获取帮助。'
+     }), { 
         status: 503,
         headers: { 'Content-Type': 'application/json' }
-      });
+     });
     }
 
     // 确保免责声明存在
@@ -145,7 +145,7 @@ export async function onRequestPost(context) {
     return new Response(JSON.stringify({ 
       interpretation: '',
       error: 'AI_SERVICE_ERROR',
-      message: `函数异常: ${error.message}`
+      message: 'AI 解读服务暂时异常，请稍后再试。如持续无法使用，请关注微信公众号【绾绾wanny】获取帮助。'
     }), { 
       status: 503,
       headers: { 'Content-Type': 'application/json' }
