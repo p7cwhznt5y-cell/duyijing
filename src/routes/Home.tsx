@@ -16,6 +16,7 @@ import { Disclaimer } from "../components/Disclaimer.tsx";
 import { QuestionInput } from "../components/QuestionInput.tsx";
 import { detectSensitive, truncateInput } from "../utils/safetyFilter.ts";
 import { interpretHexagram } from "../api/interpret.ts";
+import { ContactButton } from "../components/ContactButton.tsx";
 
 export function Home(_props: RoutableProps) {
   const [hexagram, setHexagram] = useState<Hexagram | null>(null);
@@ -24,73 +25,64 @@ export function Home(_props: RoutableProps) {
   const [interpretation, setInterpretation] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  
 
   useEffect(() => {
-  const reading = getTodayReading();
-  if (reading) {
-    const existing = getHexagramByIndex(reading.hexagramIndex);
-    if (existing) {
-      setHexagram(existing);
-      if (reading.question) setQuestion(reading.question);
-      if (reading.interpretation) setInterpretation(reading.interpretation);
-      return;  // 有缓存，直接返回
+    const reading = getTodayReading();
+    if (reading) {
+      const existing = getHexagramByIndex(reading.hexagramIndex);
+      if (existing) {
+        setHexagram(existing);
+        if (reading.question) setQuestion(reading.question);
+        if (reading.interpretation) setInterpretation(reading.interpretation);
+        return;
+      }
     }
-  }
-  // 没有缓存，生成随机卦象
-  const random = getRandomHexagram();
-  setHexagram(random);
-  saveTodayReading({ date: getTodayString(), hexagramIndex: random.index });
-
-  // 预加载二维码图片
-  const link = document.createElement('link');
-  link.rel = 'preload';
-  link.as = 'image';
-  link.href = '/qrcode.jpg';
-  document.head.appendChild(link);
-
-  return () => {
-    document.head.removeChild(link);
-  };
-}, []);
     const random = getRandomHexagram();
     setHexagram(random);
     saveTodayReading({ date: getTodayString(), hexagramIndex: random.index });
+
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = 'image';
+    link.href = '/qrcode.jpg';
+    document.head.appendChild(link);
+
+    return () => {
+      document.head.removeChild(link);
+    };
   }, []);
 
   const handleInspire = async () => {
-  if (loading || !hexagram) return;
-  const truncated = truncateInput(question.trim());
-  const detection = detectSensitive(truncated);
-  if (detection.sensitive && detection.careMessage) {
-    setCareMessage(detection.careMessage);
-    return;
-  }
-  setCareMessage(null);
-  setLoading(true);
-  setError("");
-  try {
-    const result = await interpretHexagram(hexagram, truncated);
-    if (result.error) {
-      setError(result.error);
-      setInterpretation("");
-    } else {
-      setInterpretation(result.interpretation);
-      saveTodayReading({
-        date: getTodayString(),
-        hexagramIndex: hexagram.index,
-        question: truncated,
-        interpretation: result.interpretation,
-      });
+    if (loading || !hexagram) return;
+    const truncated = truncateInput(question.trim());
+    const detection = detectSensitive(truncated);
+    if (detection.sensitive && detection.careMessage) {
+      setCareMessage(detection.careMessage);
+      return;
     }
-  } catch (e: any) {
-    console.error("💥 handleInspire 异常:", e);
-    setError(
-      "解读生成失败。如持续出现，请尝试：刷新页面、关闭广告拦截插件，或换用 Chrome/Edge 浏览器。如果仍无法解决，请关注微信公众号【绾绾wanny】，留言告知问题，我会尽快协助您。"
-    );
-    setInterpretation("");
-  }
-};
+    setCareMessage(null);
+    setLoading(true);
+    setError("");
+    try {
+      const result = await interpretHexagram(hexagram, truncated);
+      if (result.error) {
+        setError(result.error);
+        setInterpretation("");
+      } else {
+        setInterpretation(result.interpretation);
+        saveTodayReading({
+          date: getTodayString(),
+          hexagramIndex: hexagram.index,
+          question: truncated,
+          interpretation: result.interpretation,
+        });
+      }
+    } catch (e: any) {
+      console.error("handleInspire error:", e);
+      setError("解读生成失败。如持续出现，请尝试：刷新页面、关闭广告拦截插件，或换用 Chrome/Edge 浏览器。如果仍无法解决，请关注微信公众号【绾绾wanny】，留言告知问题，我会尽快协助您。");
+      setInterpretation("");
+    }
+  };
 
   if (!hexagram) {
     return (
@@ -128,13 +120,13 @@ export function Home(_props: RoutableProps) {
 
       {interpretation ? (
         <div className="inspiration-card">
-       <h2>今日启发</h2>
-      <div className="inspiration-text">{interpretation.replace(/。/g, '。\n')}</div>
-       <br />  {/* 加一个空行 */}
-       <p className="inspiration-footer">
-       以上内容仅为基于易经哲学的启发式思考，不构成任何实际建议。
-       </p>
-       </div>
+          <h2>今日启发</h2>
+          <div className="inspiration-text">{interpretation.replace(/。/g, '。\n')}</div>
+          <br />
+          <p className="inspiration-footer">
+            以上内容仅为基于易经哲学的启发式思考，不构成任何实际建议。
+          </p>
+        </div>
       ) : null}
 
       {loading ? (
@@ -174,9 +166,7 @@ export function Home(_props: RoutableProps) {
       </section>
 
       <Disclaimer />
-      {/* 联系我按钮 */}
       <ContactButton />
-      )}
     </main>
   );
 }
