@@ -44,7 +44,7 @@ export function HexagramDetail({ index }: HexagramDetailProps) {
           <span class="font-bold">{hexagram.name}</span>
         </h1>
         <span class="inline-block mt-4 rounded-full border border-cinnabar/60 text-cinnabar px-3 py-0.5 font-sans text-xs">
-          {hexagram.category} {categoryLabel}
+          {hexagram.category} 
         </span>
       </header>
 
