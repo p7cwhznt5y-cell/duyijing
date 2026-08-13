@@ -80,7 +80,15 @@ export async function interpretHexagram(
     if (!resp.ok) {
       return {
         interpretation: "",
-        error: data?.message || data?.error || "AI 解读暂时不可用，请稍后再试。"
+        error: "AI 解读暂时不可用，请稍后再试。如持续无法使用，请关注微信公众号【绾绾wanny】获取帮助。"
+      };
+    }
+
+    // 即使状态码200，也可能有业务错误
+    if (data.error) {
+      return {
+        interpretation: "",
+        error: "AI 解读暂时不可用，请稍后再试。如持续无法使用，请关注微信公众号【绾绾wanny】获取帮助。"
       };
     }
 
@@ -90,7 +98,7 @@ export async function interpretHexagram(
       interpretation = `${interpretation.trim()}\n\n${DISCLAIMER}`;
     }
 
-    return { interpretation, error: data.error };
+    return { interpretation };
   } catch (fetchErr: any) {
     clearTimeout(timeoutId);
     console.error("💥 fetch异常:", fetchErr);
@@ -98,12 +106,12 @@ export async function interpretHexagram(
     if (fetchErr.name === "AbortError") {
       return {
         interpretation: "",
-        error: "请求超时，AI 解读生成时间较长，请稍后再试。"
+        error: "请求超时，AI 解读生成时间较长，请稍后再试。如持续无法使用，请关注微信公众号【绾绾wanny】获取帮助。"
       };
     }
     return {
       interpretation: "",
-      error: "网络请求失败，请检查网络连接后重试。"
+      error: "网络请求失败，请检查网络连接后重试。如持续无法使用，请关注微信公众号【绾绾wanny】获取帮助。"
     };
   }
 }
