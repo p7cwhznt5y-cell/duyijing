@@ -27,16 +27,32 @@ export function Home(_props: RoutableProps) {
   const [showContact, setShowContact] = useState(false);
 
   useEffect(() => {
-    const reading = getTodayReading();
-    if (reading) {
-      const existing = getHexagramByIndex(reading.hexagramIndex);
-      if (existing) {
-        setHexagram(existing);
-        if (reading.question) setQuestion(reading.question);
-        if (reading.interpretation) setInterpretation(reading.interpretation);
-        return;
-      }
+  const reading = getTodayReading();
+  if (reading) {
+    const existing = getHexagramByIndex(reading.hexagramIndex);
+    if (existing) {
+      setHexagram(existing);
+      if (reading.question) setQuestion(reading.question);
+      if (reading.interpretation) setInterpretation(reading.interpretation);
+      return;  // 有缓存，直接返回
     }
+  }
+  // 没有缓存，生成随机卦象
+  const random = getRandomHexagram();
+  setHexagram(random);
+  saveTodayReading({ date: getTodayString(), hexagramIndex: random.index });
+
+  // 预加载二维码图片
+  const link = document.createElement('link');
+  link.rel = 'preload';
+  link.as = 'image';
+  link.href = '/qrcode.jpg';
+  document.head.appendChild(link);
+
+  return () => {
+    document.head.removeChild(link);
+  };
+}, []);
     const random = getRandomHexagram();
     setHexagram(random);
     saveTodayReading({ date: getTodayString(), hexagramIndex: random.index });
