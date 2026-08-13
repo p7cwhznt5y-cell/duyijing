@@ -3,6 +3,7 @@ import type { RoutableProps } from "preact-router";
 import type { HexagramCategory } from "../data/types.ts";
 import { HEXAGRAMS } from "../data/hexagrams.ts";
 import { HEXAGRAM_CATEGORIES } from "../data/categories.ts";
+import { ContactButton } from "../components/ContactButton.tsx";
 
 export function Hexagrams(_props: RoutableProps) {
   const [filter, setFilter] = useState<HexagramCategory | null>(null);
