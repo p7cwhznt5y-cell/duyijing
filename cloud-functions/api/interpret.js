@@ -12,7 +12,7 @@ export async function onRequestPost(context) {
     console.error('❌ 未配置任何 API Key');
     return new Response(JSON.stringify({ 
       error: 'AI_SERVICE_NOT_CONFIGURED',
-      message: 'AI 解读服务尚未就绪，请联系管理员配置。'
+      message: '当前用户较多，AI 解卦服务暂遇繁忙，请稍安勿躁。如需人工协助，点击对话框联系管理员。'
     }), { 
       status: 503,
       headers: { 'Content-Type': 'application/json' }
@@ -122,7 +122,7 @@ export async function onRequestPost(context) {
       return new Response(JSON.stringify({ 
         interpretation: '',
         error: 'AI_SERVICE_UNAVAILABLE',
-        message: 'AI 解读服务暂时繁忙，请稍后再试。如持续无法使用，请关注微信公众号【绾绾wanny】获取帮助。'
+        message: '当前用户较多，AI 解卦服务暂遇繁忙，请稍安勿躁。如需人工协助，点击对话框联系管理员。'
      }), { 
         status: 503,
         headers: { 'Content-Type': 'application/json' }
@@ -145,7 +145,7 @@ export async function onRequestPost(context) {
     return new Response(JSON.stringify({ 
       interpretation: '',
       error: 'AI_SERVICE_ERROR',
-      message: 'AI 解读服务暂时异常，请稍后再试。如持续无法使用，请关注微信公众号【绾绾wanny】获取帮助。'
+      message: '当前用户较多，AI 解卦服务暂遇繁忙，请稍安勿躁。如需人工协助，点击对话框联系管理员。'
     }), { 
       status: 503,
       headers: { 'Content-Type': 'application/json' }

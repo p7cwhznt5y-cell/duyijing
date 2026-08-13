@@ -80,7 +80,7 @@ export async function interpretHexagram(
     if (!resp.ok) {
       return {
         interpretation: "",
-        error: "AI 解读暂时不可用，请稍后再试。如持续无法使用，请关注微信公众号【绾绾wanny】获取帮助。"
+        error: "当前用户较多，AI 解卦服务暂遇繁忙，请稍安勿躁。如需人工协助，点击对话框联系管理员。"
       };
     }
 
@@ -88,7 +88,7 @@ export async function interpretHexagram(
     if (data.error) {
       return {
         interpretation: "",
-        error: "AI 解读暂时不可用，请稍后再试。如持续无法使用，请关注微信公众号【绾绾wanny】获取帮助。"
+        error: "当前用户较多，AI 解卦服务暂遇繁忙，请稍安勿躁。如需人工协助，点击对话框联系管理员。"
       };
     }
 
@@ -106,12 +106,12 @@ export async function interpretHexagram(
     if (fetchErr.name === "AbortError") {
       return {
         interpretation: "",
-        error: "请求超时，AI 解读生成时间较长，请稍后再试。如持续无法使用，请关注微信公众号【绾绾wanny】获取帮助。"
+        error: "请求超时，AI 解卦生成时间较长，请稍后再试。"
       };
     }
     return {
       interpretation: "",
-      error: "网络请求失败，请检查网络连接后重试。如持续无法使用，请关注微信公众号【绾绾wanny】获取帮助。"
+      error: "网络请求失败，请检查网络连接后重试。"
     };
   }
 }

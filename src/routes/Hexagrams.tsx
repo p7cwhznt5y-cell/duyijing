@@ -96,6 +96,7 @@ export function Hexagrams(_props: RoutableProps) {
           该分类下暂无已录入卦象。
         </p>
       ) : null}
+      <ContactButton />
     </main>
   );
 }

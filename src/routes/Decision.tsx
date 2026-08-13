@@ -8,6 +8,7 @@ import { detectSensitive, truncateInput } from "../utils/safetyFilter.ts";
 import { WizardStepper } from "../components/WizardStepper.tsx";
 import { CategoryPicker } from "../components/CategoryPicker.tsx";
 import { DecisionReport } from "../components/DecisionReport.tsx";
+import { ContactButton } from "../components/ContactButton.tsx";
 
 type StepType =
   | "dilemma"
@@ -365,6 +366,7 @@ export function Decision(_props: RoutableProps) {
           ) : null}
         </nav>
       ) : null}
+      <ContactButton />
     </main>
   );
 }
