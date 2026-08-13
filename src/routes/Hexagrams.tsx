@@ -65,7 +65,7 @@ export function Hexagrams(_props: RoutableProps) {
                       : "border-ink/15 bg-white/60 text-ink/70 hover:border-cinnabar/50"
                   }`}
                 >
-                  {c.value} {c.label}
+                  {c.value} 
                 </button>
               );
             })}
