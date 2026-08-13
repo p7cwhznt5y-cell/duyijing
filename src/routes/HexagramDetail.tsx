@@ -2,7 +2,6 @@ import type { RoutableProps } from "preact-router";
 import { getHexagramByIndex } from "../data/hexagrams.ts";
 import { GuaCiCard } from "../components/GuaCiCard.tsx";
 import { YaoList } from "../components/YaoList.tsx";
-import { HEXAGRAM_CATEGORIES } from "../data/categories.ts";
 
 interface HexagramDetailProps extends RoutableProps {
   index?: string;
@@ -13,9 +12,6 @@ export function HexagramDetail({ index }: HexagramDetailProps) {
   const hexagram = Number.isFinite(numericIndex)
     ? getHexagramByIndex(numericIndex)
     : undefined;
-  const categoryLabel = hexagram
-    ? HEXAGRAM_CATEGORIES.find((c) => c.value === hexagram.category)?.label ?? ""
-    : "";
   if (!hexagram) {
     return (
       <main class="max-w-md md:max-w-2xl mx-auto px-4 py-12 font-sans text-center bg-paper">
