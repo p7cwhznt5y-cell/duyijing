@@ -7,7 +7,7 @@ export function Home() {
       <div class="max-w-2xl mx-auto px-4 py-12">
         {/* 主标题 */}
         <h1 class="font-serif text-3xl md:text-4xl font-bold text-center text-ink mb-2">
-          ☯️ 轻松读懂易经
+           轻松读懂易经
         </h1>
         <p class="text-center text-ink/50 text-sm mb-10">
           三千年的东方智慧，陪你面对每一个选择
