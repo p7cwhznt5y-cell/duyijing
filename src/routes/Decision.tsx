@@ -212,8 +212,6 @@ export function Decision(_props: RoutableProps) {
 
   return (
     <main class="max-w-md md:max-w-2xl mx-auto px-4 py-6 font-sans bg-paper">
-      <WizardStepper current={safeStep} total={steps.length} />
-
       {currentStep.type === "dilemma" ? (
         <section>
           <h2 class="font-serif text-xl font-bold text-ink">你正面临什么两难？</h2>

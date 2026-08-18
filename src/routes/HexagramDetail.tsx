@@ -14,8 +14,7 @@ export function HexagramDetail({ index }: HexagramDetailProps) {
     : undefined;
   if (!hexagram) {
     return (
-      <main class="max-w-md md:max-w-2xl mx-auto px-4 py-12 font-sans text-center bg-paper">
-        <h1 class="font-serif text-2xl text-ink">未找到此卦</h1>
+      <main class="max-w-md md:max-w-2xl mx-auto px-4 py-12 font-sans text-center bg-paper pt-13">
         <p class="mt-4 font-sans text-sm text-ink/60 leading-relaxed">
           未找到此卦，可能尚未录入。首版仅收录 8 个基础卦，余 56 卦迭代补全。
         </p>
@@ -30,8 +29,8 @@ export function HexagramDetail({ index }: HexagramDetailProps) {
   }
 
   return (
-    <main class="max-w-md md:max-w-2xl mx-auto px-4 py-6 font-sans bg-paper">
-      <header class="text-center mb-8">
+    <main class="max-w-md md:max-w-2xl mx-auto px-4 py-6 font-sans bg-paper pt-13">
+      <header class="text-center mb-8">   
         <p class="font-sans text-xs text-ink/50">第 {hexagram.index} 卦</p>
         <div class="mt-3 font-serif text-8xl md:text-9xl text-ink leading-none select-none">
           {hexagram.symbol}

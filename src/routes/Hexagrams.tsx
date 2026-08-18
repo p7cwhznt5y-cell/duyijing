@@ -18,7 +18,7 @@ export function Hexagrams(_props: RoutableProps) {
     : null;
 
   return (
-    <main class="max-w-md md:max-w-2xl mx-auto px-4 py-6 font-sans bg-paper">
+    <main class="max-w-md md:max-w-2xl mx-auto px-4 py-6 font-sans bg-paper pt-13">
       <header class="text-center mb-6">
         <h1 class="font-serif text-3xl md:text-4xl font-bold text-ink">
           卦象详情

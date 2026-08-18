@@ -1,28 +1,24 @@
-import { useState } from "preact/hooks";
-import Router from "preact-router";
-import { NavBar } from "./components/NavBar.tsx";
+import { Router } from "preact-router";
 import { Home } from "./routes/Home.tsx";
-import { Decision } from "./routes/Decision.tsx";
+import { Daily } from "./routes/Daily.tsx";
 import { Hexagrams } from "./routes/Hexagrams.tsx";
+import { Decision } from "./routes/Decision.tsx";
 import { HexagramDetail } from "./routes/HexagramDetail.tsx";
-import "./app.css";
+import { TopNav } from "./components/TopNav.tsx";
 
 export function App() {
-  const [currentPath, setCurrentPath] = useState(
-    typeof window !== "undefined" ? window.location.pathname : "/",
-  );
-
   return (
-    <div class="min-h-screen bg-paper text-ink font-sans">
-      <NavBar currentPath={currentPath} />
-      <Router
-        onChange={(args) => setCurrentPath(args.url)}
-      >
-        <Home path="/" />
-        <Decision path="/decision" />
-        <Hexagrams path="/hexagrams" />
-        <HexagramDetail path="/hexagrams/:index" />
-      </Router>
-    </div>
+    <div class="min-h-screen bg-paper">
+      <TopNav />
+      <div class="pt-20"> 
+       <Router>
+          <Home path="/" />
+          <Daily path="/daily" />
+          <Hexagrams path="/hexagrams" />
+          <Decision path="/decision" />
+          <HexagramDetail path="/hexagrams/:index" />
+       </Router>
+     </div>
+   </div>
   );
 }
